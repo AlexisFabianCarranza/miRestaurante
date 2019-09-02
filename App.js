@@ -24,18 +24,20 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 //import SignUpScreen from './screens/SignUpScreen';
 import LoginScreen from './screens/LoginScreen';
+import Navigator from './Navigator';
 const App = () => {
   return (
-    <View>
-      <Text>
-        Hola mundo!
-      </Text>
-      <LoginScreen />
-    </View>
+    <Navigator />
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex:1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF'
+  },
   scrollView: {
     backgroundColor: Colors.lighter,
   },

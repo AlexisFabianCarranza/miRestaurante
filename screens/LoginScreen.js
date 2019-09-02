@@ -26,8 +26,7 @@ export default class LoginScreen extends Component {
         })
     }
 
-    login = () =>{
-        //console.log(this.state);
+    /*login = () =>{
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
             .then(response => {
                 let user = response.user;
@@ -35,6 +34,15 @@ export default class LoginScreen extends Component {
             }).catch(err => {
                 console.log(err);
             })
+    }*/
+    login = async () => {
+        try {
+            let response = await firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
+            let {user} = response;
+            console.log(user);
+        }catch(err){
+            console.log(err);
+        } 
     }
     render(){
         return(
@@ -43,6 +51,10 @@ export default class LoginScreen extends Component {
                 setEmail={this.setEmail} 
                 mainAction={this.login}
                 mainButtonTitle={'Iniciar Sesion'}
+                secondaryButtonTitle='No tengo cuenta'
+                navigationAction={()=>{
+                    this.props.navigation.navigate('SignUp')
+                }}
             />
         );
     }

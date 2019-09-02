@@ -25,13 +25,22 @@ export default class SignUpScreen extends Component {
         })
     }
 
-    createUser= () =>{
+    /*createUser= () =>{
         //console.log(this.state);
         firebase.auth().createUserWithEmailAndPassword(this.state.email , this.state.password)
             .then(response => {
                 let user = response.user;
                 console.log(user);
             })
+    }*/
+    createUser = async () => {
+        try {
+            let response = await firebase.auth().createUserWithEmailAndPassword(this.state.email , this.state.password);
+            let {user} = response; //destructuring objetcts
+            console.log(user);
+        }catch(err){
+            console.log(err);
+        } 
     }
     render(){
         return(
@@ -40,6 +49,10 @@ export default class SignUpScreen extends Component {
                 setEmail={this.setEmail} 
                 mainAction={this.createUser}
                 mainButtonTitle='Crear Usuario'
+                secondaryButtonTitle='Ya tengo cuenta'
+                navigationAction={()=>{
+                    this.props.navigation.navigate('Login')
+                }}
             />
         );
     }
