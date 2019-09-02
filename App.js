@@ -22,15 +22,15 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import SignUpScreen from './screens/SignUpScreen';
-
+//import SignUpScreen from './screens/SignUpScreen';
+import LoginScreen from './screens/LoginScreen';
 const App = () => {
   return (
     <View>
       <Text>
         Hola mundo!
       </Text>
-      <SignUpScreen />
+      <LoginScreen />
     </View>
   );
 };
