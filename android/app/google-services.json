@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "671383149836",
+    "firebase_url": "https://mi-restaurante-713ec.firebaseio.com",
+    "project_id": "mi-restaurante-713ec",
+    "storage_bucket": "mi-restaurante-713ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:671383149836:android:d725a54351ca73ff",
+        "android_client_info": {
+          "package_name": "com.mirestaurante"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "671383149836-cj3tcbs10ruocembaj6b8ikspro5rdac.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmXVn-mu_9q9VIgmuKpvSa-HQfcf4pOBI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "671383149836-cj3tcbs10ruocembaj6b8ikspro5rdac.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
