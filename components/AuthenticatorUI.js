@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
+import {View, Text, TextInput, Button, StyleSheet, TouchableHighlight} from 'react-native';
 
 export default (props) => {
     return(
@@ -9,8 +9,16 @@ export default (props) => {
             <TextInput onChangeText= {(text) => props.setEmail(text) }/>
             <Text>Password:</Text>
             <TextInput  onChangeText= {(text) => props.setPassword(text) }/>
-            <Button title={props.mainButtonTitle} onPress={() => props.mainAction()}/>
-            <Button title={props.secondaryButtonTitle} onPress={() => props.navigationAction()}/>
+            <View style={{
+                flexDirection: 'row',
+                justifyContent: 'flex-start'
+            }}>
+                <TouchableHighlight>
+                    <Button title={props.mainButtonTitle} onPress={() => props.mainAction()}/>
+                </TouchableHighlight>
+                <Button title={props.secondaryButtonTitle} onPress={() => props.navigationAction()}/>
+            </View>
+            
         </View>
     );
 }
@@ -21,5 +29,10 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: '#F5FCFF'
-    }
+    },
+    buttons: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        backgroundColor: 'red'
+    },
 });
