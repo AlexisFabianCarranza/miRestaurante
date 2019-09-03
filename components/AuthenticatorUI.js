@@ -9,10 +9,7 @@ export default (props) => {
             <TextInput onChangeText= {(text) => props.setEmail(text) }/>
             <Text>Password:</Text>
             <TextInput  onChangeText= {(text) => props.setPassword(text) }/>
-            <View style={{
-                flexDirection: 'row',
-                justifyContent: 'flex-start'
-            }}>
+            <View style={styles.buttons}>
                 <TouchableHighlight>
                     <Button title={props.mainButtonTitle} onPress={() => props.mainAction()}/>
                 </TouchableHighlight>
@@ -27,12 +24,11 @@ const styles = StyleSheet.create({
     container: {
       flex:1,
       justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#F5FCFF'
+      backgroundColor: '#F5FCFF',
+      flexDirection: 'column'
     },
     buttons: {
         flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        backgroundColor: 'red'
+        justifyContent: 'space-evenly'
     },
 });
