@@ -52,6 +52,7 @@ export default class LoginScreen extends Component {
                 mainAction={this.login}
                 mainButtonTitle={'Iniciar Sesion'}
                 secondaryButtonTitle='No tengo cuenta'
+                mainTitle='Inicio de Sesión'
                 navigationAction={()=>{
                     this.props.navigation.navigate('SignUp')
                 }}

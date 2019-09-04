@@ -50,6 +50,7 @@ export default class SignUpScreen extends Component {
                 mainAction={this.createUser}
                 mainButtonTitle='Crear Usuario'
                 secondaryButtonTitle='Ya tengo cuenta'
+                mainTitle='Creación de Usuario'
                 navigationAction={()=>{
                     this.props.navigation.navigate('Login')
                 }}

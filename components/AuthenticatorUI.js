@@ -1,34 +1,46 @@
 import React from 'react';
 
-import {View, Text, TextInput, Button, StyleSheet, TouchableHighlight} from 'react-native';
+import {View, TouchableHighlight} from 'react-native';
+import { TextInput, Button, Title, withTheme } from 'react-native-paper';
+import styles from '../styles/login.style';
 
-export default (props) => {
+let AuthenticatorUI = (props) => {
+    //console.log(props.theme);
     return(
         <View style={styles.container}>
-            <Text>Correo electrónico:</Text>
-            <TextInput onChangeText= {(text) => props.setEmail(text) }/>
-            <Text>Password:</Text>
-            <TextInput  onChangeText= {(text) => props.setPassword(text) }/>
-            <View style={styles.buttons}>
+            <Title style={{fontFamily: props.theme.fonts.medium}}>{props.mainTitle}</Title>
+            <TextInput 
+                style={styles.formControl}
+                label='Correo electronico'
+                onChangeText= {(text) => props.setEmail(text) }
+            />
+            <TextInput
+                style={styles.formControl}
+                label='Contraseña'  
+                onChangeText= {(text) => props.setPassword(text) }
+            />
+            <View style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-evenly',
+                    ...styles.formControl
+                }}>
                 <TouchableHighlight>
-                    <Button title={props.mainButtonTitle} onPress={() => props.mainAction()}/>
+                    <Button 
+                        onPress={() => props.mainAction()} mode='contained'
+                        color={props.theme.colors.accent}
+                    >
+                        {props.mainButtonTitle}
+                    </Button>
                 </TouchableHighlight>
-                <Button title={props.secondaryButtonTitle} onPress={() => props.navigationAction()}/>
+                <TouchableHighlight>
+                    <Button onPress={() => props.navigationAction()} mode='contained'>
+                        {props.secondaryButtonTitle}
+                    </Button>
+                </TouchableHighlight>
             </View>
             
         </View>
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-      flex:1,
-      justifyContent: 'center',
-      backgroundColor: '#F5FCFF',
-      flexDirection: 'column'
-    },
-    buttons: {
-        flexDirection: 'row',
-        justifyContent: 'space-evenly'
-    },
-});
+export default withTheme(AuthenticatorUI);
