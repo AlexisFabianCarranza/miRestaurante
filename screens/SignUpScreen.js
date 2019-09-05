@@ -3,8 +3,10 @@ import React, {Component} from 'react';
 import AuthenticatorUI from '../components/AuthenticatorUI';
 import firebase from 'react-native-firebase';
 import { showMessage } from 'react-native-messages';
+import {connect} from 'react-redux';
+import {login} from '../actions/user';
 
-export default class SignUpScreen extends Component {
+class SignUpScreen extends Component {
     constructor(props) {
         super(props);
 
@@ -12,6 +14,10 @@ export default class SignUpScreen extends Component {
             email: '',
             password: ''
         }
+    }
+
+    componentDidMount(){
+        console.log(this.props.user);
     }
 
     setEmail = (email) => {
@@ -39,7 +45,7 @@ export default class SignUpScreen extends Component {
             try {
                 let response = await firebase.auth().createUserWithEmailAndPassword(this.state.email , this.state.password);
                 let {user} = response; //destructuring objetcts
-                console.log(user);
+                this.props.login(user);
             }catch(err){
                 showMessage('La contraseña o el usuario es invalido');
             } 
@@ -66,3 +72,8 @@ export default class SignUpScreen extends Component {
         );
     }
 }
+
+export default connect(
+    (state) => ({user: state.user}),
+    
+)(SignUpScreen);

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View} from 'react-native';
+import {View, ActivityIndicator} from 'react-native';
 import firebase from 'react-native-firebase';
 
 export default class AuthLoading extends Component {
@@ -8,13 +8,13 @@ export default class AuthLoading extends Component {
     }
     getUser(){
         firebase.auth().onUserChanged((user) =>{
-            this.props.navigation.navigate(user ? 'App' : 'Auth');
+            this.props.navigation.navigate(false ? 'App' : 'Auth');
         })
     }
     render(){
         return (
             <View>
-
+                <ActivityIndicator/>
             </View>
         )
     }

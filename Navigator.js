@@ -14,6 +14,12 @@ const AuthNavigator = createStackNavigator({
 
 const AppNavigator = createStackNavigator({
     Home: HomeScreen
+},{
+    defaultNavigationOptions: ({navigation}) => {
+        return {
+            title: 'A la Carta'
+        }
+    }
 });
 
 export default createAppContainer(
