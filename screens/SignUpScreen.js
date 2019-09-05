@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import AuthenticatorUI from '../components/AuthenticatorUI';
 import firebase from 'react-native-firebase';
+import { showMessage } from 'react-native-messages';
 
 export default class SignUpScreen extends Component {
     constructor(props) {
@@ -34,13 +35,18 @@ export default class SignUpScreen extends Component {
             })
     }*/
     createUser = async () => {
-        try {
-            let response = await firebase.auth().createUserWithEmailAndPassword(this.state.email , this.state.password);
-            let {user} = response; //destructuring objetcts
-            console.log(user);
-        }catch(err){
-            console.log(err);
-        } 
+        if (this.state.email && this.state.password){
+            try {
+                let response = await firebase.auth().createUserWithEmailAndPassword(this.state.email , this.state.password);
+                let {user} = response; //destructuring objetcts
+                console.log(user);
+            }catch(err){
+                showMessage('La contraseña o el usuario es invalido');
+            } 
+        }else {
+            showMessage('Usuario o contraseña no ingresados');
+        }
+        
     }
     render(){
         return(
@@ -54,6 +60,8 @@ export default class SignUpScreen extends Component {
                 navigationAction={()=>{
                     this.props.navigation.navigate('Login')
                 }}
+                email={this.state.email}
+                pass={this.state.password} 
             />
         );
     }

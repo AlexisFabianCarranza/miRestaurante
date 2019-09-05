@@ -9,6 +9,7 @@
 import React, {Fragment} from 'react';
 import AppNavigator from './Navigator';
 import {Provider as PaperProvider, DefaultTheme} from 'react-native-paper';
+import { MessageBar } from 'react-native-messages';
 
 const myTheme = {
   ...DefaultTheme,
@@ -19,6 +20,7 @@ const App = () => {
   return (
     <PaperProvider theme={myTheme}>
       <AppNavigator />
+      <MessageBar/>
     </PaperProvider>
   );
 };
