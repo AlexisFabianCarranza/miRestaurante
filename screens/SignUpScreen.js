@@ -9,7 +9,7 @@ import {login} from '../actions/user';
 class SignUpScreen extends Component {
     constructor(props) {
         super(props);
-
+        this.db = firebase.firestore();
         this.state = {
             email: '',
             password: ''
@@ -31,26 +31,21 @@ class SignUpScreen extends Component {
             password: password
         })
     }
-
-    /*createUser= () =>{
-        //console.log(this.state);
-        firebase.auth().createUserWithEmailAndPassword(this.state.email , this.state.password)
-            .then(response => {
-                let user = response.user;
-                console.log(user);
-            })
-    }*/
+    
     createUser = async () => {
         if (this.state.email && this.state.password){
             try {
                 let response = await firebase.auth().createUserWithEmailAndPassword(this.state.email , this.state.password);
                 let {user} = response; //destructuring objetcts
-                this.props.login(user);
+                this.db.collection('users').doc(user.uid).set({
+                    email: user.email
+                });
             }catch(err){
-                showMessage('La contraseña o el usuario es invalido');
+                console.log(err);
+                showMessage('No se pudo crear la cuenta: '.concat(err),{duration:0.02});
             } 
         }else {
-            showMessage('Usuario o contraseña no ingresados');
+            showMessage('Usuario o contraseña no ingresados',{duration:0.02});
         }
         
     }
