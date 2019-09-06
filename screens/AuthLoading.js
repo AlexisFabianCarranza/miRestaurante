@@ -8,7 +8,7 @@ export default class AuthLoading extends Component {
     }
     getUser(){
         firebase.auth().onUserChanged((user) =>{
-            this.props.navigation.navigate(false ? 'App' : 'Auth');
+            this.props.navigation.navigate(user ? 'App' : 'Auth');
         })
     }
     render(){

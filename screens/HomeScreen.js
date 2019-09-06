@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 import { IconButton } from 'react-native-paper';
 import HomeComponent from '../components/HomeComponent';
+import firebase from 'react-native-firebase';
 
 export default class  HomeScreen extends Component {
     static navigationOptions = ({navigation}) => {
@@ -16,6 +17,12 @@ export default class  HomeScreen extends Component {
                 <IconButton 
                     icon='power-settings-new'
                     color='white'
+                    onPress={
+                        () => {
+                            firebase.auth().signOut(); 
+                            navigation.navigate('Auth');
+                        }
+                    }
                 />
             )
         }

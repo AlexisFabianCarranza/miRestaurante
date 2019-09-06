@@ -13,12 +13,16 @@ let AuthenticatorUI = (props) => {
                 style={styles.formControl}
                 label='Correo electronico'
                 value={props.email}
+                textContentType='emailAddress'
+                keyboardType='email-address'
                 onChangeText= {(text) => props.setEmail(text) }
             />
             <TextInput
                 style={styles.formControl}
                 label='Contraseña'  
                 value={props.pass}
+                textContentType='password'
+                secureTextEntry={true}
                 onChangeText= {(text) => props.setPassword(text) }
             />
             <View style={{
