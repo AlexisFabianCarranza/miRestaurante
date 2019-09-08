@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
 import {View, ActivityIndicator} from 'react-native';
 import firebase from 'react-native-firebase';
+import {connect} from 'react-redux';
+import {login} from '../actions/user';
 
-export default class AuthLoading extends Component {
+class AuthLoading extends Component {
     componentDidMount(){
         this.getUser();
     }
     getUser(){
         firebase.auth().onUserChanged((user) =>{
+            this.props.login(user);
             this.props.navigation.navigate(user ? 'App' : 'Auth');
         })
     }
@@ -19,3 +22,7 @@ export default class AuthLoading extends Component {
         )
     }
 }
+
+export default connect(()=>({}),{
+    login
+})(AuthLoading)

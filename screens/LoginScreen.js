@@ -28,20 +28,12 @@ class LoginScreen extends Component {
         })
     }
 
-    /*login = () =>{
-        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-            .then(response => {
-                let user = response.user;
-                console.log(user); 
-            }).catch(err => {
-                console.log(err);
-            })
-    }*/
     login = async () => {
         if (this.state.email && this.state.password){
             try {
                 let response = await firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
                 let {user} = response;
+                this.props.login(user);
             }catch(err){
                 showMessage('La contraseña o el usuario es invalido',{duration:0.02});
             } 

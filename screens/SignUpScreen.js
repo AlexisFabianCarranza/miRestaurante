@@ -70,5 +70,7 @@ class SignUpScreen extends Component {
 
 export default connect(
     (state) => ({user: state.user}),
-    
+    {
+        login: login
+    }
 )(SignUpScreen);
