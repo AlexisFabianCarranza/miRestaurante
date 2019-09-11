@@ -35,10 +35,10 @@ class LoginScreen extends Component {
                 let {user} = response;
                 this.props.login(user);
             }catch(err){
-                showMessage('La contraseña o el usuario es invalido',{duration:0.02});
+                showMessage('La contraseña o el usuario es invalido11',{duration:10});
             } 
         }else {
-            showMessage('Usuario o contraseña no ingresados',{duration:0.02});
+            showMessage('Usuario o contraseña no ingresados',{duration:0.15});
         }
     }
     render(){

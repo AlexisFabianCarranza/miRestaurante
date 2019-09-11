@@ -42,10 +42,10 @@ class SignUpScreen extends Component {
                 });
             }catch(err){
                 console.log(err);
-                showMessage('No se pudo crear la cuenta: '.concat(err),{duration:0.02});
+                showMessage('No se pudo crear la cuenta: '.concat(err),{duration:0.08});
             } 
         }else {
-            showMessage('Usuario o contraseña no ingresados',{duration:0.02});
+            showMessage('Usuario o contraseña no ingresados',{duration:0.08});
         }
         
     }

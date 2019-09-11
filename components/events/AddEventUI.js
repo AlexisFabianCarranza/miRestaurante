@@ -7,7 +7,7 @@ class AddEventUI extends Component {
         super(props);
         this.state = {
             title: '',
-            date: (new Date()).toJSON
+            date: (new Date()).toJSON()
         } 
     }
     submit = () => {

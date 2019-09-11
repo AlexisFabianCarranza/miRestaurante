@@ -3,13 +3,15 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
     container: {
         flex:1,
-        justifyContent: 'center',
-        alignItems: 'center'
+        backgroundColor: '#f5f5f5'
     },
     fab: {
         position: 'absolute',
         margin: 6,
         right: 0,
         bottom: 0
+    },
+    card:{
+        margin:10
     }
 }) 
