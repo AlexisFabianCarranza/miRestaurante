@@ -5,7 +5,7 @@ import HomeComponent from '../components/HomeComponent';
 import firebase from 'react-native-firebase';
 import {connect} from 'react-redux';
 import { showMessage } from 'react-native-messages';
-import { addEvent } from '../actions/events';
+import { addEvent , removeEvent } from '../actions/events';
 
 
 class  HomeScreen extends Component {
@@ -39,10 +39,18 @@ class  HomeScreen extends Component {
 
     readMyEvents = async() => {
         let ref = await this.db.collection('users').doc(this.props.user.uid)
-                        .collection('events').get();
-        let events = ref.docs.forEach(docRef =>{
-            this.props.addEvent(docRef.data());
-        });
+                        .collection('events');
+        ref.onSnapshot((querySnapshot)=>{
+            querySnapshot.docChanges.forEach((change)=>{
+                if(change.type == 'added')
+                    this.props.addEvent({
+                        ...change.doc.data(),
+                        id: change.doc.id
+                        })        
+                if(change.type == 'removed')
+                    this.props.removeEvent(change.doc);
+            });
+        })
     }
     setNavigationColor = (color) => {
         this.props.navigation.setParams({
@@ -66,5 +74,6 @@ class  HomeScreen extends Component {
 export default connect((state) => {
     return { user: state.user, events: state.events}
 }, {
-    addEvent
+    addEvent,
+    removeEvent
 })(HomeScreen);
