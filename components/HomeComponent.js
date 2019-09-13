@@ -16,7 +16,6 @@ import EventCard from './events/EventCard';
 class HomeComponent extends Component{
     componentDidMount(){
         this.props.setNavigationColor(this.props.theme.colors.primary);
-        showMessage('PRUEBA' + this.props.events);
     }
     render() {
         return(
@@ -25,7 +24,11 @@ class HomeComponent extends Component{
                     data={this.props.events}
                     ListEmptyComponent={Empty}
                     style={{width:'100%'}}
-                    renderItem={({ item }) => <EventCard key={item.id} event={item}></EventCard>}
+                    renderItem={({ item }) => <EventCard 
+                                                    openEventScreen={this.props.openEventScreen} 
+                                                    key={item.id} 
+                                                    event={item}>
+                                               </EventCard>}
                 />
                 <FAB icon='add' color='white'
                     style={{backgroundColor: this.props.theme.colors.primary, ...styles.fab}}

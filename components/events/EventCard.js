@@ -10,7 +10,7 @@ let EventCard = (props) => {
                 <Paragraph>{props.event.date}</Paragraph>
             </Card.Content>
             <Card.Actions>
-                <Button>Administrar</Button>
+                <Button onPress={()=> props.openEventScreen(props.event.id)}>Administrar</Button>
             </Card.Actions>
 
         </Card>

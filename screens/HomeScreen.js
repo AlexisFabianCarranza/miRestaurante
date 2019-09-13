@@ -60,12 +60,19 @@ class  HomeScreen extends Component {
     goToAddEvent = () => {
         this.props.navigation.navigate('AddEvent');
     }
+
+    openEventScreen = (id) => {
+        this.props.navigation.navigate('Event',{
+            eventId: id
+        })
+    }
     render(){
         return(
             <HomeComponent 
                 setNavigationColor={this.setNavigationColor}
                 events={this.props.events}
                 goToAddEvent={this.goToAddEvent}
+                openEventScreen={this.openEventScreen}
             />
         )
     }

@@ -10,6 +10,8 @@
   "dependencies": {
     "react": "16.8.6",
     "react-native": "0.60.5",
+    "react-native-contacts": "^5.0.3",
+    "react-native-datepicker": "^1.7.2",
     "react-native-firebase": "^5.5.6",
     "react-native-gesture-handler": "^1.4.1",
     "react-native-messages": "^0.2.4",

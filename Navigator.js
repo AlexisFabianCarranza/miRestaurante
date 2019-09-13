@@ -5,6 +5,8 @@ import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
 import AuthLoading from './screens/AuthLoading';
 import AddEventScreen from './screens/events/AddEventScreen';
+import EventScreen from './screens/events/EventScreen';
+import ContactsScreen from './screens/contacts/ContactsScreen';
 
 const AuthNavigator = createStackNavigator({
     SignUp: SignUpScreen,
@@ -15,7 +17,9 @@ const AuthNavigator = createStackNavigator({
 
 const AppNavigator = createStackNavigator({
     Home: HomeScreen,
-    AddEvent: AddEventScreen
+    AddEvent: AddEventScreen,
+    Event: EventScreen,
+    Contacts: ContactsScreen
 },{
     defaultNavigationOptions: ({navigation}) => {
         return {
