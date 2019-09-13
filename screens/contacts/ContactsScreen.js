@@ -1,19 +1,26 @@
 import React, {Component} from 'react'; 
 import {PermissionsAndroid , View} from 'react-native';
-import { Text } from 'react-native-paper';
+import Contacts from 'react-native-contacts';
+import ContactUI from '../../components/contacts/ContactUI';
+import firebase from 'react-native-firebase';
 
 export default class ContactsScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            hasPermission: false
+            hasPermission: false,
+            contacts: []
         }
     }
     componentDidMount(){
         this.requestPermission();
+        this.eventId =  this.props.navigation.getParam('eventId');
+        this.db = firebase.firestore(); 
     }
-    componentDidUpdate(){
-
+    addContactToEvent= async (contact) =>{
+        console.log('HASDFASDF' + this.eventId);
+        return await this.db.collection('events').doc(this.eventId).collection('contacts')
+                    .add(contact);
     }
     requestPermission = async () => {
         //Solicitar permiso
@@ -26,6 +33,7 @@ export default class ContactsScreen extends Component {
             if (granted == PermissionsAndroid.RESULTS.GRANTED) {
                 this.setState({hasPermission: true});
                 this.queryContacts();
+                return;
             }
             this.props.navigation.goBack();
         }
@@ -36,12 +44,28 @@ export default class ContactsScreen extends Component {
         //Si nos dieron permiso, cambiar state
         //Si cambiamos state , consultar contactos
     }
-    queryContacts = () => {
-        console.log('Nos dieron los contactos');
+    queryContacts = (query='') => {
+        Contacts.getContactsMatchingString(query,(err,contactsFromPhone) => {
+            if (err)
+                console.log(err);
+            else{
+                let contacts = contactsFromPhone.map((contact) => ({
+                    name: contact.givenName, 
+                    avatar: contact.thumbnailPath,
+                    id: contact.recordID
+                }));
+                this.setState({contacts});
+                console.log(contacts);  
+            }
+        })
     }
     render(){
         return(
-            <View><Text>Dando permisos</Text></View>
+            <ContactUI 
+                addContactToEvent={this.addContactToEvent} 
+                queryContacts={this.queryContacts} 
+                contacts={this.state.contacts}
+            />
         );
     }
 }

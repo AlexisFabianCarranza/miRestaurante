@@ -23,7 +23,7 @@ const AppNavigator = createStackNavigator({
 },{
     defaultNavigationOptions: ({navigation}) => {
         return {
-            title: 'A la Carta'
+            title: 'Intercambios Factilitos'
         }
     },
     initialRouteName: 'Home'

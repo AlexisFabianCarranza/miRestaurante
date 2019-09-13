@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
-import { IconButton } from 'react-native-paper';
+import { IconButton, Button } from 'react-native-paper';
 import HomeComponent from '../components/HomeComponent';
 import firebase from 'react-native-firebase';
 import {connect} from 'react-redux';
@@ -50,7 +50,7 @@ class  HomeScreen extends Component {
                 if(change.type == 'removed')
                     this.props.removeEvent(change.doc);
             });
-        })
+        }) 
     }
     setNavigationColor = (color) => {
         this.props.navigation.setParams({
