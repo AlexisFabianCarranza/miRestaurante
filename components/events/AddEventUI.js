@@ -27,7 +27,7 @@ class AddEventUI extends Component {
                     <Paragraph>Fecha:</Paragraph>
                     <DatePicker
                         style={{width:'100%'}}
-                        date={new Date(this.state.date).toLocaleDateString()}
+                        date={this.state.date}
                         onDateChange={(date)=> this.setState({date: date})}
                     />
                 </View>

@@ -7,10 +7,10 @@ let EventCard = (props) => {
         <Card style={styles.card}>
             <Card.Content>
                 <Title>{props.event.title}</Title>
-                <Paragraph>{props.event.date}</Paragraph>
+                <Paragraph>{new Date(props.event.date).toLocaleDateString()}</Paragraph>
             </Card.Content>
             <Card.Actions>
-                <Button onPress={()=> props.openEventScreen(props.event.id)}>Administrar</Button>
+                <Button onPress={()=> {props.openEventScreen(props.event.id)}}>Administrar</Button>
             </Card.Actions>
 
         </Card>

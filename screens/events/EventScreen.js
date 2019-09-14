@@ -3,11 +3,13 @@ import EventUI from '../../components/events/EventUI';
 
 export default class EventScreen extends Component {
     componentDidMount(){
-        this.eventID = this.props.navigation.getParam('eventId');
+        this.eventId = this.props.navigation.getParam('eventId');
+        console.log(this.eventId);
+
     }
     openContactsScreen = ()=>{
         this.props.navigation.navigate('Contacts',{
-            eventID: this.eventID
+            eventId: this.eventId
         })
     }
     render() {
