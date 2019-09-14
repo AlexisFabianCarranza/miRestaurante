@@ -11,10 +11,10 @@ export default (props) => {
                 <View style={{flex:1, marginLeft:10}}>
                     <Title>{props.user.name}</Title>
                 </View>
-                <IconButton 
+                {props.addContactToEvent && <IconButton 
                     icon='person-add'
                     onPress={() => props.addContactToEvent(props.user)}
-                />
+                />}
             </Card.Content>
         </Card>
     )
