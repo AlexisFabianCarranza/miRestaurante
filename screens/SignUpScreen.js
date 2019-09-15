@@ -41,7 +41,6 @@ class SignUpScreen extends Component {
                     email: user.email
                 });
             }catch(err){
-                console.log(err);
                 showMessage('No se pudo crear la cuenta: '.concat(err),{duration:0.08});
             } 
         }else {
