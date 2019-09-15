@@ -18,7 +18,8 @@ const myTheme = {
   roundness: 10,
   colors: {
     ...DefaultTheme.colors,
-    primary: '#FF6100'
+    primary: '#FF6100',
+    accent: '#3A22FF'
   }
 }
 
