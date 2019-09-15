@@ -25,6 +25,11 @@ export default class EventScreen extends Component {
             querySnapshot.docChanges.forEach((change)=>{
                 if (change.type == 'added')
                     this.addContact({uid: change.doc.id, ...change.doc.data()})
+                if (change.type == 'modified'){
+                    this.clearContact(change.doc);
+                    this.addContact({uid: change.doc.id, ...change.doc.data()})
+                }
+                    
             })
         })
     }
@@ -52,6 +57,12 @@ export default class EventScreen extends Component {
     addContact = (contact) => {
         this.setState({
             contacts: this.state.contacts.concat([contact])
+        });
+    }
+    clearContact = (contact) => {
+        console.log(this.state.contacts);
+        this.setState({
+            contacts: this.state.contacts.filter(contactOld => contactOld.uid != contact.id )
         });
     }
 
