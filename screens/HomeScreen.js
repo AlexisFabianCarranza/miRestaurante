@@ -5,7 +5,7 @@ import HomeComponent from '../components/HomeComponent';
 import firebase from 'react-native-firebase';
 import {connect} from 'react-redux';
 import { showMessage } from 'react-native-messages';
-import { addEvent , removeEvent } from '../actions/events';
+import { addEvent , removeEvent , clearEvents} from '../actions/events';
 
 
 class  HomeScreen extends Component {
@@ -33,6 +33,7 @@ class  HomeScreen extends Component {
     }
 
     componentDidMount() {
+        this.props.clearEvents();
         this.db = firebase.firestore();
         this.readMyEvents();  
     }
@@ -42,11 +43,15 @@ class  HomeScreen extends Component {
                         .collection('events');
         ref.onSnapshot((querySnapshot)=>{
             querySnapshot.docChanges.forEach((change)=>{
-                if(change.type == 'added')
+                if(change.type == 'added'){
                     this.props.addEvent({
                         ...change.doc.data(),
                         id: change.doc.id
-                        })        
+                        });
+                    console.log('Evento agregado');
+                }
+                      
+                    console.log(change.doc.data());      
                 if(change.type == 'removed')
                     this.props.removeEvent(change.doc);
             });
@@ -82,5 +87,6 @@ export default connect((state) => {
     return { user: state.user, events: state.events}
 }, {
     addEvent,
-    removeEvent
+    removeEvent,
+    clearEvents
 })(HomeScreen);

@@ -12,7 +12,7 @@ export function removeEvent(event) {
     }
 }
 
-export function clearEvents(event) {
+export function clearEvents() {
     return {
         type: 'CLEAR_EVENTS'
     }

@@ -6,13 +6,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import Empty from './utilities/Empty';
 import { showMessage } from 'react-native-messages';
 import EventCard from './events/EventCard';
-/*
-    <FlatList 
-                    data={this.props.events}
-                    ListEmptyComponent={Empty}
-                    renderItem={ ({item}) => <Text>{item.title}</Text>}
-    />
-*/
+
 class HomeComponent extends Component{
     componentDidMount(){
         this.props.setNavigationColor(this.props.theme.colors.primary);

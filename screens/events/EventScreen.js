@@ -29,7 +29,6 @@ export default class EventScreen extends Component {
                     this.clearContact(change.doc);
                     this.addContact({uid: change.doc.id, ...change.doc.data()})
                 }
-                    
             })
         })
     }

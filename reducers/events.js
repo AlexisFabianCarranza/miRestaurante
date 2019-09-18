@@ -4,7 +4,7 @@ export default (state = [], action) => {
             return state.concat([action.event]);
         case 'REMOVE_EVENT':
             return state.filter((event)=> event.id != action.event.id );
-        case 'CLEAR_EVENT':
+        case 'CLEAR_EVENTS':
             return []
         default: 
             return state;
