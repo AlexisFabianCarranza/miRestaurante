@@ -12,7 +12,7 @@ const AuthNavigator = createStackNavigator({
     SignUp: SignUpScreen,
     Login: LoginScreen
 },{
-    initialRouteName: 'SignUp'
+    initialRouteName: 'Login'
 });
 
 const AppNavigator = createStackNavigator({
