@@ -4,6 +4,7 @@ import firebase from 'react-native-firebase';
 import slugify from '../../lib/slugify';
 import { connect } from 'react-redux';
 import {login} from '../../actions/user';
+import { showMessage } from 'react-native-messages';
 
 class AddEventScreen extends Component {
     
@@ -23,6 +24,12 @@ class AddEventScreen extends Component {
         await this.db.collection('events').doc(slug).set({
             title, 
             date
+        });
+        showMessage('Se ha agregado correctamente el evento ',{
+            duration:3000,
+            slideAnimationOffset: 10,
+            showAnimationDuration: 600,
+            hideAnimationDuration: 600,
         });
         this.props.navigation.navigate('Home');
     }

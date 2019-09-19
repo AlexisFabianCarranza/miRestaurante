@@ -27,7 +27,7 @@ class LoginScreen extends Component {
             password: password
         })
     }
-
+    
     login = async () => {
         if (this.state.email && this.state.password){
             try {
@@ -35,10 +35,22 @@ class LoginScreen extends Component {
                 let {user} = response;
                 this.props.login(user);
             }catch(err){
-                showMessage('La contraseña o el usuario es invalido',{duration:1000});
+                showMessage('La contraseña o el usuario es invalido',{
+                    duration:3000,
+                    slideAnimationOffset: 10,
+                    showAnimationDuration: 600,
+                    hideAnimationDuration: 600,
+                });
             } 
         }else {
-            showMessage('Usuario o contraseña no ingresados',{duration:1000});
+            showMessage('Usuario o contraseña no ingresados',
+                {
+                    duration:3000,
+                    slideAnimationOffset: 10,
+                    showAnimationDuration: 600,
+                    hideAnimationDuration: 600,
+                }
+            );
         }
     }
     render(){

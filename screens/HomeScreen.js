@@ -68,7 +68,12 @@ class  HomeScreen extends Component {
         let deleteUserEvent = this.db.collection('users').doc(this.props.user.uid)
                             .collection('events').doc(event).delete();
         let deleteEvent = this.db.collection('events').doc(event).delete();
-        console.log(deleteEvent);
+        showMessage('Se ha eliminado el evento ',{
+            duration:3000,
+            slideAnimationOffset: 10,
+            showAnimationDuration: 600,
+            hideAnimationDuration: 600,
+        });
     }
     openEventScreen = (id) => {
         this.props.navigation.navigate('Event',{

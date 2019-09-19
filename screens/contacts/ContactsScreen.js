@@ -3,6 +3,7 @@ import {PermissionsAndroid , View} from 'react-native';
 import Contacts from 'react-native-contacts';
 import ContactUI from '../../components/contacts/ContactUI';
 import firebase from 'react-native-firebase';
+import { showMessage } from 'react-native-messages';
 
 export default class ContactsScreen extends Component {
     constructor(props) {
@@ -18,9 +19,14 @@ export default class ContactsScreen extends Component {
         this.db = firebase.firestore(); 
     }
     addContactToEvent= async (contact) =>{
-        console.log('HASDFASDF' + this.eventId);
-        return await this.db.collection('events').doc(this.eventId).collection('contacts')
+        let prom = await this.db.collection('events').doc(this.eventId).collection('contacts')
                     .add(contact);
+        showMessage('Se ha agregado el contacto',{
+            duration:3000,
+            slideAnimationOffset: 10,
+            showAnimationDuration: 600,
+            hideAnimationDuration: 600,
+        });
     }
     requestPermission = async () => {
         //Solicitar permiso
