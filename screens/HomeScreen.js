@@ -44,14 +44,12 @@ class  HomeScreen extends Component {
         ref.onSnapshot((querySnapshot)=>{
             querySnapshot.docChanges.forEach((change)=>{
                 if(change.type == 'added'){
+                    console.log('Evento agregado ' + change.doc.data());
                     this.props.addEvent({
                         ...change.doc.data(),
                         id: change.doc.id
                         });
-                    console.log('Evento agregado');
-                }
-                      
-                    console.log(change.doc.data());      
+                }    
                 if(change.type == 'removed')
                     this.props.removeEvent(change.doc);
             });
@@ -65,7 +63,13 @@ class  HomeScreen extends Component {
     goToAddEvent = () => {
         this.props.navigation.navigate('AddEvent');
     }
-
+    removeEvent = (event) => {
+        this.props.removeEvent(event);
+        let deleteUserEvent = this.db.collection('users').doc(this.props.user.uid)
+                            .collection('events').doc(event).delete();
+        let deleteEvent = this.db.collection('events').doc(event).delete();
+        console.log(deleteEvent);
+    }
     openEventScreen = (id) => {
         this.props.navigation.navigate('Event',{
             eventId: id
@@ -74,6 +78,7 @@ class  HomeScreen extends Component {
     render(){
         return(
             <HomeComponent 
+                removeEvent={this.removeEvent} 
                 setNavigationColor={this.setNavigationColor}
                 events={this.props.events}
                 goToAddEvent={this.goToAddEvent}

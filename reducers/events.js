@@ -3,7 +3,10 @@ export default (state = [], action) => {
         case 'ADD_EVENT':
             return state.concat([action.event]);
         case 'REMOVE_EVENT':
-            return state.filter((event)=> event.id != action.event.id );
+            {
+                return state.filter((event)=>  event.id != action.event);
+            }
+            
         case 'CLEAR_EVENTS':
             return []
         default: 

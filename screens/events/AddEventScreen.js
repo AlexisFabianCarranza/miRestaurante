@@ -14,8 +14,6 @@ class AddEventScreen extends Component {
         //Guardar en firebase
         //Generar slug en base al titulo
         let slug = slugify(title);
-        console.log(slug);
-        console.log(this.props.user);
         //Guardar en el doc del usuario
         await this.db.collection('users').doc(this.props.user.uid)
                 .collection('events').doc(slug).set({
@@ -27,8 +25,6 @@ class AddEventScreen extends Component {
             date
         });
         this.props.navigation.navigate('Home');
-        //Generar slug en base al titulo
-        //this.db.
     }
     render(){
         return(

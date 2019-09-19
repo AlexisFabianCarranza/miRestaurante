@@ -18,7 +18,9 @@ class HomeComponent extends Component{
                     data={this.props.events}
                     ListEmptyComponent={Empty}
                     style={{width:'100%'}}
+                    keyExtractor={(item, index) => item.id}
                     renderItem={({ item }) => <EventCard 
+                                                    removeEvent={this.props.removeEvent}
                                                     openEventScreen={this.props.openEventScreen} 
                                                     key={item.id} 
                                                     event={item}>
