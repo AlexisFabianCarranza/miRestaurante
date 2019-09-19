@@ -19,9 +19,9 @@ class SecretContactCard extends Component {
     
     render () {
         let props = this.props;
-        let avatar = (!props.user.avatar || props.user.avatar.length == 0) ? require('../../imgs/chico.png') : {uri: props.user.avatar };
-        let avatarFriend = (!props.user.friend.avatar || props.user.avatar.friend.length == 0) ? require('../../imgs/chico.png') : {uri: props.user.friend.avatar };
-        let avatarFriendHidden = this.state.vissibleFriend ? avatarFriend : require('../../imgs/chico.png');
+        let avatar = (!props.user.avatar || props.user.avatar.length == 0) ? require('../../imgs/cat.png') : {uri: props.user.avatar };
+        let avatarFriend = (!props.user.friend.avatar || props.user.avatar.friend.length == 0) ? require('../../imgs/cat.png') : {uri: props.user.friend.avatar };
+        let avatarFriendHidden = this.state.vissibleFriend ? avatarFriend : require('../../imgs/cat_secret.png');
         return (     
             <Card style={styles.card}>
                 <View style={[styles.row]}>

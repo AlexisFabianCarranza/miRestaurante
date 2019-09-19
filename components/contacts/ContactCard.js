@@ -11,12 +11,12 @@ export default class ContactCard extends Component {
         };
     }
     render(){
-        console.log(this.props.user.name);
         let props = this.props;
+        let avatar = (!props.user.avatar || props.user.avatar.length == 0) ? require('../../imgs/cat.png') : {uri: props.user.avatar };
         return(
             <Card style={(this.state.selected) ? {...styles.card, backgroundColor:'green'} : styles.card}> 
                 <Card.Content style={{flexDirection:'row'}}>
-                    <Image style={{width:40, height:40}} source={{uri: props.user.avatar}}/>
+                    <Image style={{width:40, height:40}} source={avatar}/>
                     <View style={{flex:1, marginLeft:10}}>
                         <Title>{props.user.name}</Title>
                     </View>
