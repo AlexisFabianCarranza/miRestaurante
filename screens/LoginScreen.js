@@ -5,15 +5,16 @@ import firebase from 'react-native-firebase';
 import { showMessage } from 'react-native-messages';
 import {connect} from 'react-redux';
 import {login} from '../actions/user';
+import {clearEvents} from '../actions/events';
 
 class LoginScreen extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             email: '',
             password: ''
-        }
+        };
+        this.props.clearEvents();
     }
 
     setEmail = (email) => {
@@ -75,6 +76,7 @@ class LoginScreen extends Component {
 export default connect(
     (state) => ({user: state.user}),
     {
-        login:login
+        login:login,
+        clearEvents
     }
 ) (LoginScreen);

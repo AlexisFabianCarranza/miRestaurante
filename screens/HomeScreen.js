@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
 import { IconButton, Button } from 'react-native-paper';
 import HomeComponent from '../components/HomeComponent';
 import firebase from 'react-native-firebase';
 import {connect} from 'react-redux';
 import { showMessage } from 'react-native-messages';
 import { addEvent , removeEvent , clearEvents} from '../actions/events';
-
+import { logout } from '../actions/user';
 
 class  HomeScreen extends Component {
     static navigationOptions = ({navigation}) => {
@@ -31,9 +30,7 @@ class  HomeScreen extends Component {
             )
         }
     }
-
     componentDidMount() {
-        this.props.clearEvents();
         this.db = firebase.firestore();
         this.readMyEvents();  
     }
@@ -44,7 +41,6 @@ class  HomeScreen extends Component {
         ref.onSnapshot((querySnapshot)=>{
             querySnapshot.docChanges.forEach((change)=>{
                 if(change.type == 'added'){
-                    console.log('Evento agregado ' + change.doc.data());
                     this.props.addEvent({
                         ...change.doc.data(),
                         id: change.doc.id
@@ -81,6 +77,7 @@ class  HomeScreen extends Component {
         })
     }
     render(){
+        console.log(this.props.events);
         return(
             <HomeComponent 
                 removeEvent={this.removeEvent} 
@@ -93,10 +90,11 @@ class  HomeScreen extends Component {
     }
 }
 
+
 export default connect((state) => {
     return { user: state.user, events: state.events}
 }, {
     addEvent,
     removeEvent,
-    clearEvents
+    logout
 })(HomeScreen);
